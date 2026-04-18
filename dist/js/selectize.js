@@ -1129,8 +1129,10 @@ $.extend(Selectize.prototype, {
         var classes = data.classes ? ' ' + data.classes : '';
         classes += data[field_value] === '' ? ' selectize-dropdown-emptyoptionlabel' : '';
 		let emptyLabel = null;
-		if (self.settings.allowEmptyOption && self.settings.showEmptyOptionInDropdown) {
-			emptyLabel = escape_html(self.settings.emptyOptionLabel || '--');
+		if(data[field_value] === ''){
+			if (self.settings.allowEmptyOption && self.settings.showEmptyOptionInDropdown) {
+				emptyLabel = escape_html(self.settings.emptyOptionLabel || '--');
+			}
 		}
 
         var styles = data.styles ? ' style="' + data.styles +  '"': '';
