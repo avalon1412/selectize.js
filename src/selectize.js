@@ -335,9 +335,13 @@ $.extend(Selectize.prototype, {
 			'option': function(data, escape) {
         var classes = data.classes ? ' ' + data.classes : '';
         classes += data[field_value] === '' ? ' selectize-dropdown-emptyoptionlabel' : '';
+		let emptyLabel = null;
+		if (self.settings.allowEmptyOption && self.settings.showEmptyOptionInDropdown) {
+			emptyLabel = escape_html(self.settings.emptyOptionLabel || '--');
+		}
 
         var styles = data.styles ? ' style="' + data.styles +  '"': '';
-				return '<div' + styles + ' class="option' + classes + '">' + escape(data[field_label]) + '</div>';
+				return '<div' + styles + ' class="option' + classes + '">' + (emptyLabel!=null?emptyLabel:escape(data[field_label])) + '</div>';
 			},
 			'item': function(data, escape) {
 				return '<div class="item">' + escape(data[field_label]) + '</div>';
